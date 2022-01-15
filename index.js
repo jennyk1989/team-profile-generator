@@ -45,7 +45,7 @@ const managerInfo = () => {
         }
     ])
 };
-// presented with menu with option to add add Engineer or Intern or to finish building team
+// presented with menu with option to add Engineer or Intern or to finish building team
 const menuOptions = () => {
     return inquirer.prompt ([
         {
@@ -107,4 +107,25 @@ const internInfo = () => {
         }
     ]);
 };
-//
+
+const writeFile = data => {
+    return new Promise ((resolve, reject) => { 
+        fs.writeFile('./dist/index.html', data, err => {
+            if (err) {
+                reject(err)
+                return;
+            }
+            resolve({
+                ok: true,
+                message: 'HTML file created!'
+            });
+        });
+    }) 
+};
+managerInfo()
+    .then(data => {
+        return generateHTML(data);
+    })
+    .then(data => {
+        return writeFile(data);
+    }) 
