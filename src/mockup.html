@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mockup</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+</head>
+<body>
+    <!-- banner -->
+    <div class="hero is-info">
+        <div class="hero-body">
+            <p class="title has-text-centered"> My Team </p>
+        </div>
+    </div>
+    <!-- box for cards -->
+    <div class="section is large">
+        <div class="columns">
+            <!-- Employee Card -->
+            <div class="card">
+                <header class="card-header has-background-primary">
+                    <p class="card-header-title is-centered has-text-white">Employee</p>
+                </header>
+                <div class="card-content">
+                    <div class="field">ID: ${employee.id} </div>
+                    <div class="field">Email: ${employee.email} </div>
+                    <div class="field">test3</div>
+                </div>
+            </div>
+            <!-- Manager Card -->
+            <div class="card">
+                <header class="card-header has-background-primary">
+                    <p class="card-header-title is-centered has-text-white">Manager</p>
+                </header>
+                <div class="card-content">
+                    <div class="field">ID: ${employee.id} </div>
+                    <div class="field">Email: ${employee.email} </div>
+                    <div class="field">Office Number: ${mangager.officeNumber}</div>
+                </div>
+            </div>
+            <!-- Engineer Card -->
+            <div class="card">
+                <header class="card-header has-background-primary">
+                    <p class="card-header-title is-centered has-text-white">Engineer</p>
+                </header>
+                <div class="card-content">
+                    <div class="field">ID: ${employee.id} </div>
+                    <div class="field">Email: ${employee.email} </div>
+                    <div class="field">GitHub: ${engineer.github}</div>
+                </div>
+            </div>
+            <!-- Intern Card -->
+            <div class="card">
+                <header class="card-header has-background-primary">
+                    <p class="card-header-title is-centered has-text-white">Intern</p>
+                </header>
+                <div class="card-content">
+                    <div class="field">ID: ${employee.id} </div>
+                    <div class="field">Email: ${employee.email} </div>
+                    <div class="field">School: ${}</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+</body>
+</html>
