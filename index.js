@@ -9,7 +9,7 @@ const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 
 // array to hold the team 
-const team = [];
+const teamData = [];
 
 /* flow:
 start app -> prompted to enter Manager’s name, ID, email, & office number ->
@@ -54,21 +54,24 @@ const menuOptions = () => {
         {
             type: 'list',
             name: 'menu',
-            message: 'Select one of the following options:',
-            choices: ['Add Engineer', 'Add Intern', 'Done building team']
+            message: 'Which employee type would you like to add?',
+            choices: ['Engineer', 'Intern', 'Exit']
         }
     ])
     .then(selectedOption => {
-        if (selectedOption === 'Add Engineer') {
+        if (selectedOption.menu === 'Engineer') {
             //start Engineer prompts
             engineerInfo();
-        } else if (selectedOption === 'Add Intern') {
+        } else if (selectedOption.menu === 'Intern') {
             //start Intern prompts
             internInfo();
         } else {
-            //stop app and render HTML page
-            generateHTML();
-            writeFile();
+            fs.writeFile('./dist/index.html', teamData, err => {
+                if (err) {
+                    reject(err)
+                    return;
+                }
+            });
         }
     })
 };
@@ -98,8 +101,10 @@ const engineerInfo = () => {
         },
     ])
     //gather the answers to prompts in a Promise
-    .then(engineerAnswers => {
-        
+    .then(engineerData => {
+        teamData.push(engineerData);
+        //return to the menu options
+        return menuOptions;
     })
     
 };
@@ -126,27 +131,17 @@ const internInfo = () => {
             name: 'school',
             message: 'Enter the school of the Intern'
         }
-    ]);
+    ])
+    .then(internData => {
+        teamData.push(internData);
+        //return to the menu options
+        return menuOptions;
+    })
 };
 
-const writeFile = data => {
-    return new Promise ((resolve, reject) => { 
-        fs.writeFile('./dist/index.html', data, err => {
-            if (err) {
-                reject(err)
-                return;
-            }
-            resolve({
-                ok: true,
-                message: 'HTML file created!'
-            });
-        });
-    }) 
-};
 managerInfo()
-    .then(data => {
-        return generateHTML(data);
-    })
-    .then(data => {
-        return writeFile(data);
-    }) 
+    .then(menuOptions)
+    // .then(data => {
+    //     return generateHTML(data);
+    // })
+    
