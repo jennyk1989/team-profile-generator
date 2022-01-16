@@ -9,7 +9,7 @@ const Intern = require('./lib/Intern');
 
 
 // Main HTML (that employee cards are added to):
-function generateTeam() {
+function generateTeam(team) {
     return `
         <!DOCTYPE html>
         <html lang="en">
@@ -28,7 +28,7 @@ function generateTeam() {
             </div>
             <div class="section is large">
                 <div class="columns">
-                ${cards}
+                ${generateHTML(team)}
                 </div>
             </div>    
         </body>
@@ -40,18 +40,76 @@ function generateManager (Manager) {
     return `
     <div class="card">
         <header class="card-header has-background-primary">
-            <p class="card-header-title is-centered has-text-white">Manager</p>
+            <p class="card-header-title is-centered has-text-white">Manager: ${Manager.getName()}</p>
         </header>
         <div class="card-content">
-            <div class="field">ID: ${employee.id} </div>
-            <div class="field">Email: ${employee.email} </div>
-            <div class="field">Office Number: ${mangager.officeNumber}</div>
+            <div class="field">ID: ${Manager.getID()} </div>
+            <div class="field">Email: ${Manager.getEmail()} </div>
+            <div class="field">Office Number: ${Manager.getOfficeNumber()}</div>
         </div>
     </div>
     `
 }
 
 // Engineer Cards
-
-
+function generateEngineer (Engineer) {
+    return `
+    <div class="card">
+        <header class="card-header has-background-primary">
+            <p class="card-header-title is-centered has-text-white">Enginner: ${Engineer.getName()}</p>
+        </header>
+        <div class="card-content">
+            <div class="field">ID: ${Engineer.getID()} </div>
+            <div class="field">Email: ${Engineer.getEmail()} </div>
+            <div class="field">Office Number: ${Engineer.getGithub()}</div>
+        </div>
+    </div>
+    `
+}
 // Intern Cards
+function generateIntern (Intern) {
+    return `
+    <div class="card">
+        <header class="card-header has-background-primary">
+            <p class="card-header-title is-centered has-text-white">Intern:  ${Intern.getName()}</p>
+        </header>
+        <div class="card-content">
+            <div class="field">ID: ${Intern.getID()} </div>
+            <div class="field">Email: ${Intern.getEmail()} </div>
+            <div class="field">Office Number: ${Intern.getSchool()}</div>
+        </div>
+    </div>
+    `
+}
+
+function generateHTML(team) {
+    let teamCards = []; //start an array to store the selected cards
+    //forLoop that goes thru the cards & selects it based on certain conditions:
+    for (let i=0; i < team.length; i++) {
+        const cardArray = team[i];
+        //W3 Schools: Use switch statement to select one of many code blocks to be executed.
+        switch(cardArray.getRole()) {
+            case 'Manager': //use this codeblock if getRole() is 'Manager'
+                //codeblock
+                const manager = new Manager(cardArray.id, cardArray.name, cardArray.email, cardArray.officeNumber);
+                teamCards.push(generateManager(manager)); //push method to add new manager card into teamCards array 
+                break;
+            case 'Engineer': //use this codeblock if getRole() is 'Engineer'
+                //codeblock
+                const engineer = new Engineer(cardArray.id, cardArray.name, cardArray.email, cardArray.github);
+                teamCards.push(generateEngineer(engineer));
+                break;
+            case 'Intern': //use this codeblock if getRole() is 'Intern'
+                //codeblock
+                const intern = new Intern (cardArray.id, cardArray.name, cardArray.email, cardArray.school);
+                teamCards.push(generateIntern(intern));
+                break;
+        } 
+    }
+    return teamCards.join(''); //join cards in array into a string
+}
+//export the html
+module.exports = generateHTML;
+
+
+
