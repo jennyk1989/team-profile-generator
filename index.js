@@ -8,6 +8,9 @@ const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 
+// array to hold the team 
+const team = [];
+
 /* flow:
 start app -> prompted to enter Manager’s name, ID, email, & office number ->
 presented with menu with option to add add Engineer or Intern or to finish building team
@@ -29,7 +32,7 @@ const managerInfo = () => {
         {
             type: 'input',
             name: 'id',
-            message: 'What is the ID Number of the Manager?'
+            message: 'What is the Employee ID Number of the Manager?'
         },
         //Manager's email
         {
@@ -55,6 +58,19 @@ const menuOptions = () => {
             choices: ['Add Engineer', 'Add Intern', 'Done building team']
         }
     ])
+    .then(selectedOption => {
+        if (selectedOption === 'Add Engineer') {
+            //start Engineer prompts
+            engineerInfo();
+        } else if (selectedOption === 'Add Intern') {
+            //start Intern prompts
+            internInfo();
+        } else {
+            //stop app and render HTML page
+            generateHTML();
+            writeFile();
+        }
+    })
 };
 
 // Select Engineer option -> prompted to enter Engineer’s name, ID, email, & GitHub username -> taken back to menu
@@ -81,6 +97,11 @@ const engineerInfo = () => {
             message: 'What is the GitHub username of the Engineer?',
         },
     ])
+    //gather the answers to prompts in a Promise
+    .then(engineerAnswers => {
+        
+    })
+    
 };
 // Select Intern option -> prompted to enter the Intern’s name, ID, email, & school -> taken back to menu
 const internInfo = () => {
