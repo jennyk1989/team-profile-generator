@@ -1,12 +1,12 @@
+const Manager = require('./lib/Manager');
+const Engineer = require('./lib/Engineer');
+const Intern = require('./lib/Intern');
 // import required Node modules
 const fs = require('fs'); //FileSystem module for writing files
 const inquirer = require('inquirer'); //Inquirer module for handling user prompts
 
 // import other required files
-const Manager = require('./lib/Manager');
-const Engineer = require('./lib/Engineer');
-const Intern = require('./lib/Intern');
-const generator = require('./src/generateHTML'); //importing the HTML generator
+const generateHTML = require('./src/generateHTML'); //importing the HTML generator
 
 // array to hold the team 
 const team = [];
@@ -63,7 +63,7 @@ const menuOptions = () => {
             //start Intern prompts
             internInfo();
         } else {
-            fs.writeFile('./dist/index.html', generator(team), err => {
+            fs.writeFile('./dist/index.html', generateHTML(team), err => {
                 if (err) {
                     reject(err)
                     return;
