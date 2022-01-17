@@ -3,21 +3,13 @@ const fs = require('fs'); //FileSystem module for writing files
 const inquirer = require('inquirer'); //Inquirer module for handling user prompts
 
 // import other required files
-// Employee.js not required (imported via other files)
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
+const generator = require('./src/generateHTML'); //importing the HTML generator
 
 // array to hold the team 
 const team = [];
-
-/* flow:
-start app -> prompted to enter Manager’s name, ID, email, & office number ->
-presented with menu with option to add add Engineer or Intern or to finish building team
-Select Engineer option -> prompted to enter Engineer’s name, ID, email, & GitHub username -> taken back to menu
-Select Intern option -> prompted to enter the Intern’s name, ID, email, & school -> taken back to menu
-When done -> exit app -> HTML generated
-*/
 
 // start app -> prompted to enter Manager’s name, ID, email, & office number
 const managerInfo = () => {
@@ -47,6 +39,11 @@ const managerInfo = () => {
             message: 'What is the office phone number of the Manager?'
         }
     ])
+    .then(managerData => {
+        let manager = new Manager (manager.name, manager.id, manager.email, manager.officeNumber);
+        team.push(manager);
+        console.log(team);
+    })
 };
 // presented with menu with option to add Engineer or Intern or to finish building team
 const menuOptions = () => {
@@ -66,7 +63,7 @@ const menuOptions = () => {
             //start Intern prompts
             internInfo();
         } else {
-            fs.writeFile('./dist/index.html', teamData, err => {
+            fs.writeFile('./dist/index.html', generator(team), err => {
                 if (err) {
                     reject(err)
                     return;
@@ -102,7 +99,9 @@ const engineerInfo = () => {
     ])
     //gather the answers to prompts in a Promise
     .then(engineerData => {
-        team.push(engineerData);
+        let engineer = new Engineer(engineerData.name, engineerData.id, engineerData.email, engineerData.github);
+        team.push(engineer);
+        console.log(team);
         //return to the menu options
         return menuOptions;
     })
@@ -126,22 +125,21 @@ const internInfo = () => {
             name: 'email',
             message: 'Enter the email of the Intern'
         },
-        { //email
+        { //school
             type: 'input',
             name: 'school',
             message: 'Enter the school of the Intern'
         }
     ])
     .then(internData => {
-        team.push(internData);
+        let intern = new Intern(internData.name, internData.id, internData.email, internData.school);
+        team.push(intern);
+        console.log(team);
         //return to the menu options
         return menuOptions;
     })
 };
 
 managerInfo()
-    .then(menuOptions)
-    // .then(data => {
-    //     return generateHTML(data);
-    // })
+    .then(menuOptions);
     
