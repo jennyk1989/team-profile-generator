@@ -109,7 +109,7 @@ function generateHTML(team) {
     return teamCards.join(''); //join cards in array into a string
 }
 //export the html
-module.exports = generateHTML;
+module.exports = generateTeam;
 
 
 

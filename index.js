@@ -9,7 +9,7 @@ const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 
 // array to hold the team 
-const teamData = [];
+const team = [];
 
 /* flow:
 start app -> prompted to enter Manager’s name, ID, email, & office number ->
@@ -102,7 +102,7 @@ const engineerInfo = () => {
     ])
     //gather the answers to prompts in a Promise
     .then(engineerData => {
-        teamData.push(engineerData);
+        team.push(engineerData);
         //return to the menu options
         return menuOptions;
     })
@@ -133,7 +133,7 @@ const internInfo = () => {
         }
     ])
     .then(internData => {
-        teamData.push(internData);
+        team.push(internData);
         //return to the menu options
         return menuOptions;
     })
