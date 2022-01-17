@@ -45,7 +45,7 @@ function generateManager (Manager) {
         <div class="card-content">
             <div class="field">ID: ${Manager.getID()} </div>
             <div class="field">Email: ${Manager.getEmail()} </div>
-            <div class="field">Office Number: ${Manager.getOfficeNumber()}</div>
+            <div class="field">Office Number: ${Manager.officeNumber}</div>
         </div>
     </div>
     `
@@ -61,7 +61,7 @@ function generateEngineer (Engineer) {
         <div class="card-content">
             <div class="field">ID: ${Engineer.getID()} </div>
             <div class="field">Email: ${Engineer.getEmail()} </div>
-            <div class="field">Office Number: ${Engineer.getGithub()}</div>
+            <div class="field">Office Number: ${Engineer.github}</div>
         </div>
     </div>
     `
@@ -76,7 +76,7 @@ function generateIntern (Intern) {
         <div class="card-content">
             <div class="field">ID: ${Intern.getID()} </div>
             <div class="field">Email: ${Intern.getEmail()} </div>
-            <div class="field">Office Number: ${Intern.getSchool()}</div>
+            <div class="field">Office Number: ${Intern.school}</div>
         </div>
     </div>
     `

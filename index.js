@@ -1,19 +1,19 @@
 // import required Node modules
-const fs = require('fs'); //FileSystem module for writing files
 const inquirer = require('inquirer'); //Inquirer module for handling user prompts
+const fs = require('fs'); //FileSystem module for writing files
 
 // import other required files
+const generateHTML = require('./src/generateHTML'); //importing the HTML generator
 const Manager = require('./lib/Manager.js');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
-const generateHTML = require('./src/generateHTML'); //importing the HTML generator
 
 // array to hold the team 
 const team = [];
 
 // start app -> prompted to enter Manager’s name, ID, email, & office number
-const managerInfo = () => {
-    return inquirer.prompt([
+function managerInfo() {
+    inquirer.prompt([
         //Manager's name
         {
             type: 'input',
@@ -40,47 +40,37 @@ const managerInfo = () => {
         }
     ])
     .then(managerData => {
-        let manager = new Manager (managerData.name, managerData.id, managerData.email, managerData.officeNumber);
-        team.push(manager);
-        menuOptions();
-    })
-};
+        const manager = new Manager(managerData.name, managerData.id, managerData.email, managerData.officeNumber);
+        team.push(manager); //add manager info to the team array
+        menuOptions(); //go to menu once manager info entered
+    });
+}
 // presented with menu with option to add Engineer or Intern or to finish building team
-const menuOptions = () => {
-    return inquirer.prompt ([
+function menuOptions() {
+    inquirer.prompt([
         {
             type: 'list',
             name: 'menu',
             message: 'Which employee type would you like to add?',
-            choices: ['engineer', 'intern', 'exit'],
+            choices: ['add engineer', 'add intern', 'exit app'],
         },
     ])
-    .then(answer => {
-        switch (answer.menu) {
-            case "engineer":
-                engineerInfo();
-                break;
-            case "intern":
-                internInfo();
-                break;
-            case "exit":
-                return writeFile(team);
+    .then(choice => {
+        if (choice.menu === 'add engineer') {
+            //start Engineer prompts
+            engineerInfo();
+        } else if (choice.menu === 'add intern') {
+            //start Intern prompts
+            internInfo();
+        } else if (choice.menu === 'exit app') {
+            writeFile();
         }
-        // if (console.log(answer.menu) == 'engineer') {
-        //     //start Engineer prompts
-        //     engineerInfo();
-        // } else if (console.log(answer.menu) == 'intern') {
-        //     //start Intern prompts
-        //     internInfo();
-        // } else {
-        //     return writeFile(team);
-        // }
-    })
-};
+    });
+}
 
 // Select Engineer option -> prompted to enter Engineer’s name, ID, email, & GitHub username -> taken back to menu
-const engineerInfo = () => {
-    return inquirer.prompt([
+function engineerInfo() {
+    inquirer.prompt([
         {
             type: 'input',
             name: 'name',
@@ -104,61 +94,52 @@ const engineerInfo = () => {
     ])
     //gather the answers to prompts in a Promise
     .then(engineerData => {
-        let engineer = new Engineer(engineerData.name, engineerData.id, engineerData.email, engineerData.github);
+        const engineer = new Engineer(engineerData.name, engineerData.id, engineerData.email, engineerData.github);
         team.push(engineer);
-        console.log(team);
         //return to the menu options
-        return menuOptions();
-    })
-    
-};
+        menuOptions();
+    });
+}
 // Select Intern option -> prompted to enter the Intern’s name, ID, email, & school -> taken back to menu
-const internInfo = () => {
-    return inquirer.prompt([
-        { //role
+function internInfo() {
+    inquirer.prompt([
+        {
             type: 'list',
             name: 'name',
             message: 'What is the name of the Intern?'
         },
-        { //id
+        {
             type: 'input',
             name: 'id',
             message: 'Enter the id number of the Intern'
         },
-        { //email
+        {
             type: 'input',
             name: 'email',
             message: 'Enter the email of the Intern'
         },
-        { //school
+        {
             type: 'input',
             name: 'school',
             message: 'Enter the school of the Intern'
-        }
+        },
     ])
     .then(internData => {
-        let intern = new Intern(internData.name, internData.id, internData.email, internData.school);
+        const intern = new Intern(internData.name, internData.id, internData.email, internData.school);
         team.push(intern);
-        console.log(team);
         //return to the menu options
-        return menuOptions();
-    })
-};
+        menuOptions();
+    });
+}
 
-const writeFile = team => {
-    return new Promise ((resolve, reject) => {
-        fs.writeFile('./dist/index.html', team, err => {
-            if (err) {
-                reject(err)
-                return;
-            }
-            resolve({
-                ok: true,
-                message: 'Html file created'
-            });
-        });
-    })
-};
+function writeFile() {
+    fs.writeFile('./dist/index.html', generateHTML(team), err => {
+        if (err) {
+            reject(err);
+            return;
+        }
+    });
+}
 managerInfo()
 
     
