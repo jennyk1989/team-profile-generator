@@ -52,24 +52,29 @@ const menuOptions = () => {
             type: 'list',
             name: 'menu',
             message: 'Which employee type would you like to add?',
-            choices: ["engineer","intern","exit"]
-        }
+            choices: ['engineer', 'intern', 'exit'],
+        },
     ])
-    .then(selectedOption => {
-        if (selectedOption.menu.choices === "engineer") {
-            //start Engineer prompts
-            engineerInfo();
-        } else if (selectedOption.menu.choices === "intern") {
-            //start Intern prompts
-            internInfo();
-        } else {
-            fs.writeFile('./dist/index.html', generateHTML(team), err => {
-                if (err) {
-                    reject(err)
-                    return;
-                }
-            });
+    .then(answer => {
+        switch (answer.menu) {
+            case "engineer":
+                engineerInfo();
+                break;
+            case "intern":
+                internInfo();
+                break;
+            case "exit":
+                return writeFile(team);
         }
+        // if (console.log(answer.menu) == 'engineer') {
+        //     //start Engineer prompts
+        //     engineerInfo();
+        // } else if (console.log(answer.menu) == 'intern') {
+        //     //start Intern prompts
+        //     internInfo();
+        // } else {
+        //     return writeFile(team);
+        // }
     })
 };
 
@@ -140,6 +145,20 @@ const internInfo = () => {
     })
 };
 
+const writeFile = team => {
+    return new Promise ((resolve, reject) => {
+        fs.writeFile('./dist/index.html', team, err => {
+            if (err) {
+                reject(err)
+                return;
+            }
+            resolve({
+                ok: true,
+                message: 'Html file created'
+            });
+        });
+    })
+};
 managerInfo()
 
     
