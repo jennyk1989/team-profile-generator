@@ -30,13 +30,24 @@ function managerInfo() {
         {
             type: 'input',
             name: 'email',
-            message: 'What is the email of the Manager?'
+            message: 'What is the email of the Manager?',
+            //making sure a valid email address is entered:
+            validate: email => { 
+                validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email);
+                if(validRegex) {
+                    return true;
+                } else {
+                    console.log('Please enter a valid email address!')
+                    return false;
+                }
+            }
         },
         //Manager's office number
         {
             type: 'input',
             name: 'officeNumber',
-            message: 'What is the office phone number of the Manager?'
+            message: 'What is the office number of the Manager?',
+            validate: 
         }
     ])
     .then(managerData => {
@@ -102,6 +113,7 @@ function engineerInfo() {
         menuOptions();
     });
 }
+// Select Intern option -> prompted to enter the Intern’s name, ID, email, & school -> taken back to menu
 function internInfo() {
     inquirer.prompt([
         {
@@ -133,7 +145,6 @@ function internInfo() {
         menuOptions();
     });
 }
-// Select Intern option -> prompted to enter the Intern’s name, ID, email, & school -> taken back to menu
 
 function writeFile() {
     fs.writeFile('./dist/index.html', generateHTML(team), err => {
