@@ -50,22 +50,24 @@ function menuOptions() {
     inquirer.prompt([
         {
             type: 'list',
-            name: 'menu',
+            name: 'menuChoice',
             message: 'Which employee type would you like to add?',
-            choices: ['add engineer', 'add intern', 'exit app'],
+            choices: [
+                {name: 'Engineer', value: 'addengineer'},
+                {name: 'Intern', value: 'addintern'},
+                {name: 'Exit', value: 'exit'},
+            ],
         },
     ])
-    .then(choice => {
-        if (choice.menu === 'add engineer') {
-            //start Engineer prompts
+    .then( answer => {
+        if (answer.menuChoice === 'addengineer') {
             engineerInfo();
-        } else if (choice.menu === 'add intern') {
-            //start Intern prompts
+        } else if (answer.menuChoice === 'addintern') {
             internInfo();
-        } else if (choice.menu === 'exit app') {
+        } else if (answer.menuChoice === 'exit') {
             writeFile();
         }
-    });
+    })
 }
 
 // Select Engineer option -> prompted to enter Engineer’s name, ID, email, & GitHub username -> taken back to menu
@@ -100,30 +102,30 @@ function engineerInfo() {
         menuOptions();
     });
 }
-// Select Intern option -> prompted to enter the Intern’s name, ID, email, & school -> taken back to menu
 function internInfo() {
     inquirer.prompt([
         {
-            type: 'list',
+            type: 'input',
             name: 'name',
-            message: 'What is the name of the Intern?'
+            message: 'What is the name of the Intern?',
         },
         {
             type: 'input',
             name: 'id',
-            message: 'Enter the id number of the Intern'
+            message: 'What is the ID number of the Intern?',
         },
         {
             type: 'input',
             name: 'email',
-            message: 'Enter the email of the Intern'
+            message: 'What is the email of the Intern?',
         },
         {
             type: 'input',
             name: 'school',
-            message: 'Enter the school of the Intern'
+            message: 'What is the school of the Intern?',
         },
     ])
+    //gather the answers to prompts in a Promise
     .then(internData => {
         const intern = new Intern(internData.name, internData.id, internData.email, internData.school);
         team.push(intern);
@@ -131,6 +133,7 @@ function internInfo() {
         menuOptions();
     });
 }
+// Select Intern option -> prompted to enter the Intern’s name, ID, email, & school -> taken back to menu
 
 function writeFile() {
     fs.writeFile('./dist/index.html', generateHTML(team), err => {
