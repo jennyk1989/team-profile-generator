@@ -24,6 +24,7 @@ file will be seen in the "dist" folder under index.html.
 To run tests, type in "npm run test" in the command terminal. 
 ### Screenshots
 Tests Passed:
+<img width="1158" alt="Screen Shot 2022-01-16 at 8 12 31 PM" src="https://user-images.githubusercontent.com/92952780/149695968-eb11c196-e389-4816-993d-58802533b6e2.png">
 ### Video
 
 ## License 📃
