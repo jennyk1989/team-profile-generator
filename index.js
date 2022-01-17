@@ -40,9 +40,9 @@ const managerInfo = () => {
         }
     ])
     .then(managerData => {
-        let manager = new Manager (manager.name, manager.id, manager.email, manager.officeNumber);
+        let manager = new Manager (managerData.name, managerData.id, managerData.email, managerData.officeNumber);
         team.push(manager);
-        console.log(team);
+        menuOptions();
     })
 };
 // presented with menu with option to add Engineer or Intern or to finish building team
@@ -52,14 +52,14 @@ const menuOptions = () => {
             type: 'list',
             name: 'menu',
             message: 'Which employee type would you like to add?',
-            choices: ['Engineer', 'Intern', 'Exit']
+            choices: ["engineer","intern","exit"]
         }
     ])
     .then(selectedOption => {
-        if (selectedOption.menu === 'Engineer') {
+        if (selectedOption.menu.choices === "engineer") {
             //start Engineer prompts
             engineerInfo();
-        } else if (selectedOption.menu === 'Intern') {
+        } else if (selectedOption.menu.choices === "intern") {
             //start Intern prompts
             internInfo();
         } else {
@@ -103,7 +103,7 @@ const engineerInfo = () => {
         team.push(engineer);
         console.log(team);
         //return to the menu options
-        return menuOptions;
+        return menuOptions();
     })
     
 };
@@ -136,10 +136,10 @@ const internInfo = () => {
         team.push(intern);
         console.log(team);
         //return to the menu options
-        return menuOptions;
+        return menuOptions();
     })
 };
 
 managerInfo()
-    .then(menuOptions);
+
     

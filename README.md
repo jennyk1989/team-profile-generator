@@ -16,7 +16,7 @@ This application was created using Test Driven Development (TDD).
 Node.js, npm Jest, and npm Inquirer need to be installed in order to run this application. 
 Node.js can be installed from the Node.js website and initialized using "node init" in the 
 command terminal. After cloning the repositoring, install npm Jest by typing "npm install --save-dev jest"
-in the command terminal and install inquirer by typing "npm inquirer" in the command terminal.
+in the command terminal and install inquirer by typing "npm install inquirer" in the command terminal.
 ## Usage
 After the installation steps are completed, initialize the application by typing "node index" in the 
 command terminal. Follow the prompts to create the team profile webpage. Once finished, the generated HTML

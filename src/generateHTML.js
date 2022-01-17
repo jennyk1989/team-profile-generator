@@ -3,9 +3,9 @@
 //Intern = Employee + school, getSchool(), & getRole()
 
 //Import Manager, Engineer, & Intern
-const Manager = require('./lib/Manager');
-const Engineer = require('./lib/Engineer');
-const Intern = require('./lib/Intern');
+const Manager = require('../lib/Manager');
+const Engineer = require('../lib/Engineer');
+const Intern = require('../lib/Intern');
 
 
 // Main HTML (that employee cards are added to):
