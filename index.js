@@ -47,7 +47,6 @@ function managerInfo() {
             type: 'input',
             name: 'officeNumber',
             message: 'What is the office number of the Manager?',
-            validate: 
         }
     ])
     .then(managerData => {
