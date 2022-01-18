@@ -3,8 +3,8 @@ const Manager = require("../lib/Manager");
 
 // test officeNumber
 test('gets office number of Manager', () => {
-    const manager = new Manager ('Jenny', 80, 'mock@gmail.com', 2109991212);
-    expect(manager.officeNumber).toEqual(expect.any(Number));
+    const manager = new Manager ('Jenny', 80, 'mock@gmail.com', 989);
+    expect(manager.officeNumber).toEqual(989);
 });
 
 // test getRole method
