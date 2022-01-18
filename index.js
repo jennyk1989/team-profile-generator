@@ -18,13 +18,31 @@ function managerInfo() {
         {
             type: 'input',
             name: 'name',
-            message: 'What is the name of the Manager?'
+            message: 'What is the name of the Manager?',
+            validate: nameInput => {
+                if (isNaN(nameInput)) {
+                    return true;
+                } else {
+                    console.log('Please enter the name of the manager!');
+                    return false;
+                }
+            }
         },
         //Manager's ID
         {
             type: 'input',
             name: 'id',
-            message: 'What is the Employee ID Number of the Manager?'
+            message: 'What is the Employee ID Number of the Manager?',
+            //validate that input is a number:
+            validate: idInput => {
+                //if input is not a number(NaN), return false
+                if (isNaN(idInput)) {
+                    console.log('Please enter a valid id number!');
+                    return false;
+                } else {
+                    return true;
+                }
+            }
         },
         //Manager's email
         {
@@ -37,7 +55,7 @@ function managerInfo() {
                 if(validRegex) {
                     return true;
                 } else {
-                    console.log('Please enter a valid email address!')
+                    console.log('Please enter a valid email address!');
                     return false;
                 }
             }
@@ -47,6 +65,16 @@ function managerInfo() {
             type: 'input',
             name: 'officeNumber',
             message: 'What is the office number of the Manager?',
+            //validate that input is a number:
+            validate: officeInput => {
+                //if input is not a number(NaN), return false
+                if (isNaN(officeInput)) {
+                    console.log('Please enter a valid office number!');
+                    return false;
+                } else {
+                    return true;
+                }
+            }
         }
     ])
     .then(managerData => {
@@ -75,6 +103,7 @@ function menuOptions() {
         } else if (answer.menuChoice === 'addintern') {
             internInfo();
         } else if (answer.menuChoice === 'exit') {
+            console.log('Your page has been generated!');
             writeFile();
         }
     })
@@ -87,21 +116,57 @@ function engineerInfo() {
             type: 'input',
             name: 'name',
             message: 'What is the name of the Engineer?',
+            validate: nameInput => {
+                if (isNaN(nameInput)) {
+                    return true;
+                } else {
+                    console.log('Please enter the name of the engineer!');
+                    return false;
+                }
+            }
         },
         {
             type: 'input',
             name: 'id',
             message: 'What is the ID number of the Engineer?',
+            //validate that input is a number:
+            validate: idInput => {
+                //if input is not a number(NaN), return false
+                if (isNaN(idInput)) {
+                    console.log('Please enter a valid id number!');
+                    return false;
+                } else {
+                    return true;
+                }
+            }
         },
         {
             type: 'input',
             name: 'email',
             message: 'What is the email of the Engineer?',
+            //making sure a valid email address is entered:
+            validate: email => { 
+                validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email);
+                if(validRegex) {
+                    return true;
+                } else {
+                    console.log('Please enter a valid email address!')
+                    return false;
+                }
+            },
         },
         {
             type: 'input',
             name: 'github',
             message: 'What is the GitHub username of the Engineer?',
+            validate: githubInput => {
+                if (githubInput) {
+                    return true;
+                } else {
+                    console.log('Please enter the github username!');
+                    return false;
+                }
+            }
         },
     ])
     //gather the answers to prompts in a Promise
@@ -119,21 +184,57 @@ function internInfo() {
             type: 'input',
             name: 'name',
             message: 'What is the name of the Intern?',
+            validate: nameInput => {
+                if (isNaN(nameInput)) {
+                    return true;
+                } else {
+                    console.log('Please enter the name of the intern!');
+                    return false;
+                }
+            }
         },
         {
             type: 'input',
             name: 'id',
             message: 'What is the ID number of the Intern?',
+            //validate that input is a number:
+            validate: idInput => {
+                //if input is not a number(NaN), return false
+                if (isNaN(idInput)) {
+                    console.log('Please enter a valid id number!');
+                    return false;
+                } else {
+                    return true;
+                }
+            }
         },
         {
             type: 'input',
             name: 'email',
             message: 'What is the email of the Intern?',
+            //making sure a valid email address is entered:
+            validate: email => { 
+                validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email);
+                if(validRegex) {
+                    return true;
+                } else {
+                    console.log('Please enter a valid email address!');
+                    return false;
+                }
+            },
         },
         {
             type: 'input',
             name: 'school',
             message: 'What is the school of the Intern?',
+            validate: schoolInput => {
+                if (schoolInput) {
+                    return true;
+                } else {
+                    console.log('Please enter the name of school!');
+                    return false;
+                }
+            }
         },
     ])
     //gather the answers to prompts in a Promise

@@ -61,7 +61,7 @@ function generateEngineer (Engineer) {
         <div class="card-content">
             <div class="field">ID: ${Engineer.id} </div>
             <div class="field">Email: ${Engineer.email} </div>
-            <div class="field">Office Number: ${Engineer.github}</div>
+            <div class="field">Github: ${Engineer.github}</div>
         </div>
     </div>
     `
@@ -76,7 +76,7 @@ function generateIntern (Intern) {
         <div class="card-content">
             <div class="field">ID: ${Intern.id} </div>
             <div class="field">Email: ${Intern.email} </div>
-            <div class="field">Office Number: ${Intern.school}</div>
+            <div class="field">School: ${Intern.school}</div>
         </div>
     </div>
     `
