@@ -40,11 +40,11 @@ function generateManager (Manager) {
     return `
     <div class="card">
         <header class="card-header has-background-primary">
-            <p class="card-header-title is-centered has-text-white">Manager: ${Manager.getName()}</p>
+            <p class="card-header-title is-centered has-text-white">Manager: ${Manager.name}</p>
         </header>
         <div class="card-content">
-            <div class="field">ID: ${Manager.getID()} </div>
-            <div class="field">Email: ${Manager.getEmail()} </div>
+            <div class="field">ID: ${Manager.id} </div>
+            <div class="field">Email: ${Manager.email} </div>
             <div class="field">Office Number: ${Manager.officeNumber}</div>
         </div>
     </div>
@@ -56,11 +56,11 @@ function generateEngineer (Engineer) {
     return `
     <div class="card">
         <header class="card-header has-background-primary">
-            <p class="card-header-title is-centered has-text-white">Enginner: ${Engineer.getName()}</p>
+            <p class="card-header-title is-centered has-text-white">Enginner: ${Engineer.name}</p>
         </header>
         <div class="card-content">
-            <div class="field">ID: ${Engineer.getID()} </div>
-            <div class="field">Email: ${Engineer.getEmail()} </div>
+            <div class="field">ID: ${Engineer.id} </div>
+            <div class="field">Email: ${Engineer.email} </div>
             <div class="field">Office Number: ${Engineer.github}</div>
         </div>
     </div>
@@ -71,11 +71,11 @@ function generateIntern (Intern) {
     return `
     <div class="card">
         <header class="card-header has-background-primary">
-            <p class="card-header-title is-centered has-text-white">Intern:  ${Intern.getName()}</p>
+            <p class="card-header-title is-centered has-text-white">Intern:  ${Intern.name}</p>
         </header>
         <div class="card-content">
-            <div class="field">ID: ${Intern.getID()} </div>
-            <div class="field">Email: ${Intern.getEmail()} </div>
+            <div class="field">ID: ${Intern.id} </div>
+            <div class="field">Email: ${Intern.email} </div>
             <div class="field">Office Number: ${Intern.school}</div>
         </div>
     </div>
@@ -91,17 +91,17 @@ function generateHTML(team) {
         switch(cardArray.getRole()) {
             case 'Manager': //use this codeblock if getRole() is 'Manager'
                 //codeblock
-                const manager = new Manager(cardArray.id, cardArray.name, cardArray.email, cardArray.officeNumber);
+                const manager = new Manager(cardArray.name, cardArray.id, cardArray.email, cardArray.officeNumber);
                 teamCards.push(generateManager(manager)); //push method to add new manager card into teamCards array 
                 break;
             case 'Engineer': //use this codeblock if getRole() is 'Engineer'
                 //codeblock
-                const engineer = new Engineer(cardArray.id, cardArray.name, cardArray.email, cardArray.github);
+                const engineer = new Engineer(cardArray.name, cardArray.id, cardArray.email, cardArray.github);
                 teamCards.push(generateEngineer(engineer));
                 break;
             case 'Intern': //use this codeblock if getRole() is 'Intern'
                 //codeblock
-                const intern = new Intern (cardArray.id, cardArray.name, cardArray.email, cardArray.school);
+                const intern = new Intern (cardArray.name, cardArray.id, cardArray.email, cardArray.school);
                 teamCards.push(generateIntern(intern));
                 break;
         } 
