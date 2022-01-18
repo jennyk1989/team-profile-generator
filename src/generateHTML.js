@@ -38,7 +38,7 @@ function generateTeam(team) {
 // Manager Card
 function generateManager (Manager) {
     return `
-    <div class="card">
+    <div class="card m-6">
         <header class="card-header has-background-primary">
             <p class="card-header-title is-centered has-text-white">Manager: ${Manager.name}</p>
         </header>
@@ -54,7 +54,7 @@ function generateManager (Manager) {
 // Engineer Cards
 function generateEngineer (Engineer) {
     return `
-    <div class="card">
+    <div class="card m-6">
         <header class="card-header has-background-primary">
             <p class="card-header-title is-centered has-text-white">Enginner: ${Engineer.name}</p>
         </header>
@@ -69,7 +69,7 @@ function generateEngineer (Engineer) {
 // Intern Cards
 function generateIntern (Intern) {
     return `
-    <div class="card">
+    <div class="card m-6">
         <header class="card-header has-background-primary">
             <p class="card-header-title is-centered has-text-white">Intern:  ${Intern.name}</p>
         </header>
