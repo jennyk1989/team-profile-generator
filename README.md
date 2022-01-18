@@ -14,7 +14,7 @@ This application was created using Test Driven Development (TDD).
 * [Questions](#Questions)
 ## Installation 📥
 Node.js, npm Jest, and npm Inquirer need to be installed in order to run this application. 
-Node.js can be installed from the Node.js website and initialized using "node init" in the 
+Node.js can be installed from the Node.js website and initialized using "npm init" in the 
 command terminal. After cloning the repositoring, install npm Jest by typing "npm install --save-dev jest"
 in the command terminal and install inquirer by typing "npm install inquirer" in the command terminal.
 ## Usage
@@ -24,11 +24,11 @@ file will be seen in the "dist" folder under index.html.
 To run tests, type in "npm run test" in the command terminal. 
 ### Screenshots
 Tests Passed:
-<img width="1158" alt="Screen Shot 2022-01-16 at 8 12 31 PM" src="https://user-images.githubusercontent.com/92952780/149695968-eb11c196-e389-4816-993d-58802533b6e2.png">
+<img width="1212" alt="tests-sample" src="https://user-images.githubusercontent.com/92952780/150031741-5a1117ee-bead-416c-9680-58baa6502d8f.png">
 Sample of Prompts:
-
+<img width="1202" alt="prompts-sample" src="https://user-images.githubusercontent.com/92952780/150031611-ed9862a4-d30e-4f9d-a126-4326f2e85378.png">
 Sample HTML PAGE genererated by App:
-
+<img width="1576" alt="html-sample" src="https://user-images.githubusercontent.com/92952780/150031661-f9a2e65c-a55f-4ce0-8b32-feb7c2e35f6a.png">
 ### Video
 https://user-images.githubusercontent.com/92952780/150030660-0e8e9773-9851-45a3-b439-876ddf66b406.mp4
 ## License 📃
