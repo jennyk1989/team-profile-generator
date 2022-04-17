@@ -39,5 +39,5 @@ No contributions are requested or being accepted at this time, thank you!
 Run tests using the npm package, Jest
 ## Questions 🖐️
 Questions or concerns? </br>
-Find me on GitHub: [jennyk1989](https://github.com/jennyk1989)
+Find me on GitHub: [jennykeene](https://github.com/jennykeene)
  
